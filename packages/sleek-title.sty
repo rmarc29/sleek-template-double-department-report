@@ -64,18 +64,24 @@
 
 % Custom fields
 
-\newif\ifLogo
+\newif\ifLogoLeft 
+\newif\ifLogoRight 
 \newif\ifInstitute
-\newif\ifFaculty
-\newif\ifDepartment
+\newif\ifFacultyLeft 
+\newif\ifFacultyRight 
+\newif\ifDepartmentLeft 
+\newif\ifDepartmentRight 
 \newif\ifSubtitle
 \newif\ifSupervisor
 \newif\ifContext
 
-\newcommand*{\logo}[1]{\gdef\@logo{#1}\Logotrue}
+\newcommand*{\logoLeft}[1]{\gdef\@logoLeft{#1}\LogoLefttrue} % New commands created for positionning Left/Right
+\newcommand*{\logoRight}[1]{\gdef\@logoRight{#1}\LogoRighttrue}
 \newcommand*{\institute}[1]{\gdef\@institute{#1}\Institutetrue}
-\newcommand*{\faculty}[1]{\gdef\@faculty{#1}\Facultytrue}
-\newcommand*{\department}[1]{\gdef\@department{#1}\Departmenttrue}
+\newcommand*{\facultyLeft}[1]{\gdef\@facultyLeft{#1}\FacultyLefttrue}
+\newcommand*{\facultyRight}[1]{\gdef\@facultyRight{#1}\FacultyRighttrue}
+\newcommand*{\departmentLeft}[1]{\gdef\@departmentLeft{#1}\DepartmentLefttrue}
+\newcommand*{\departmentRight}[1]{\gdef\@departmentRight{#1}\DepartmentRighttrue}
 \newcommand*{\subtitle}[1]{\gdef\@subtitle{#1}\Subtitletrue}
 \newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}\Supervisortrue}
 \newcommand*{\context}[1]{\gdef\@context{#1}\Contexttrue}
@@ -88,26 +94,46 @@
     \begin{titlepage}
         \setlength{\parindent}{0pt}
         \begin{minipage}[t][\topheight]{\textwidth}
-            \begin{center}
-                \ifLogo
-                    \includegraphics[height=\logoheight]{\@logo}
+            \begin{minipage}[t]{0.48\textwidth}
+                \raggedright
+                \ifLogoLeft
+                    \includegraphics[height=\logoheight]{\@logoLeft} %Adjust size of left logo (They might override each other)
                 \fi
-                \vfill
-                {
-                    \scshape
+                
+                {\scshape
                     \ifInstitute
                         {\LARGE\@institute\unskip\\}
                     \fi
                     \ifFaculty
-                        {\Large\@faculty\unskip\\[1ex]}
+                        {\Large\@facultyLeft\unskip\\[1ex]}
                     \fi
                     \ifDepartment
-                        {\large\@department}
+                        {\large\@departmentLeft}
                     \fi
-                    \clearpar
                 }
-            \end{center}
+            \end{minipage}
+            \hfill
+            \begin{minipage}[t]{0.48\textwidth}
+                \raggedleft
+                \ifLogoRight
+                    \includegraphics[height=\logoheight]{\@logoRight} %Adjust size of right logo
+                \fi
+    
+                {\scshape
+                    \ifInstitute
+                        {\LARGE\@institute\unskip\\}
+                    \fi
+                    \ifFacultyRight
+                        {\Large\@facultyRight\unskip\\[1ex]}
+                    \fi
+                    \ifDepartmentRight
+                        {\large\@departmentRight}
+                    \fi
+                }
+            \end{minipage}
+
         \end{minipage}
+
         \begin{minipage}{\textwidth}
             \vspace{\titleskipabove}
             \begin{mdframed}[
