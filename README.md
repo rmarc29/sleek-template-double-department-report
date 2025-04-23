@@ -20,6 +20,19 @@ Sleek Template is [Overleaf](https://www.overleaf.com/) ready!
 
 This template creates another logo, department and faculty. Useful for creating reports for internships (showcasing all the information about both the University you're in and the department that is welcoming you for the internship).
 
+Original
+```
+\logo
+\faculty
+\department
+```
+Will need to be replaced with 
+```
+\logoLeft or \logoRight
+\facultyLeft or \facultyRight
+\departmentLeft or \departmentRight
+```
+
 > [!TIP]
 > Keep in mind this is customizable by accesing `sleek-title.sty` and editing lines ~ [100-135](https://github.com/rmarc29/sleek-template-double-department-report/blob/master/packages/sleek-title.sty).
 
